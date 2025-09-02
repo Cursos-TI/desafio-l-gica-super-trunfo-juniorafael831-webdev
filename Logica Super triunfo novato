@@ -1,0 +1,108 @@
+#include <stdio.h>
+
+// Declaração da struct
+
+struct Cidade {
+    char Estado[3];       
+    char Codigo[10];
+    char Nome[50];
+    int Habitantes;
+    float Area;
+    float PIB;   
+    int Pontos;
+    float Densidade;
+    float PIBperCapita;
+};
+
+int main() {
+    struct Cidade c1, c2;
+
+    // ---- Cadastro da primeira cidade ----
+    printf("Digite o Estado (sigla): ");
+    scanf("%2s", c1.Estado);
+
+    printf("Digite o Codigo da carta: ");
+    scanf("%9s", c1.Codigo);
+
+    printf("Digite o Nome da Cidade: ");
+    scanf(" %[^\n]", c1.Nome);
+
+    printf("Digite o numero de habitantes: ");
+    scanf("%d", &c1.Habitantes);
+
+    printf("Digite a Area em km²: ");
+    scanf("%f", &c1.Area);
+
+    printf("Digite o PIB em bilhoes: ");
+    scanf("%f", &c1.PIB);
+
+    printf("Digite os pontos turisticos em numero: ");
+    scanf("%d", &c1.Pontos);
+
+    // ---- Cadastro da segunda cidade ----
+    printf("\n--- Agora vamos cadastrar outra cidade ---\n");
+
+    printf("Digite o Estado (sigla): ");
+    scanf("%2s", c2.Estado);
+
+    printf("Digite o Codigo da carta: ");
+    scanf("%9s", c2.Codigo);
+
+    printf("Digite o Nome da Cidade: ");
+    scanf(" %[^\n]", c2.Nome);
+
+    printf("Digite o numero de habitantes: ");
+    scanf("%d", &c2.Habitantes);
+
+    printf("Digite a Area em km²: ");
+    scanf("%f", &c2.Area);
+
+    printf("Digite o PIB em bilhoes: ");
+    scanf("%f", &c2.PIB);
+
+    printf("Digite os pontos turisticos em numero: ");
+    scanf("%d", &c2.Pontos);
+
+    // ---- Cálculos ----
+    c1.Densidade = (float)c1.Habitantes / c1.Area;
+    c1.PIBperCapita = (c1.PIB * 1000000000.0f) / c1.Habitantes;
+
+    c2.Densidade = (float)c2.Habitantes / c2.Area;
+    c2.PIBperCapita = (c2.PIB * 1000000000.0f) / c2.Habitantes;
+
+    // ---- Comparação (escolha do atributo) ----
+    // NESSA PARTE O USUARIO ESCOLHE O ATRIBUTO PARA COMPARAR
+   // PARTE DO PROGRAMA ONDE VAI ESCREVER NO TERMINAL
+    
+    printf("\n===== Comparação de cartas (Atributo: População) =====\n");
+
+    printf("Carta 1 - %s (%s): %d habitantes\n", c1.Nome, c1.Estado, c1.Habitantes);
+    printf("Carta 2 - %s (%s): %d habitantes\n", c2.Nome, c2.Estado, c2.Habitantes);
+
+     printf("\n===== Comparação de cartas (Atributo: Densidade Populacional) =====\n");
+
+    printf("Carta 1 - %s (%s): %.2f hab/km²\n", c1.Nome, c1.Estado, c1.Densidade);
+    printf("Carta 2 - %s (%s): %.2f hab/km²\n", c2.Nome, c2.Estado, c2.Densidade);
+
+
+    //COMPARAÇÃO DE DENSIDADE
+
+    if (c1.Densidade < c2.Densidade) {
+        printf("Resultado: Carta 1 (%s) venceu! (menor densidade)\n", c1.Nome);
+    } else if (c2.Densidade < c1.Densidade) {
+        printf("Resultado: Carta 2 (%s) venceu! (menor densidade)\n", c2.Nome);
+    } else {
+        printf("Resultado: Empate!\n");
+    }
+
+    // COMPARAÇÃO DE HABITANTES
+    if (c1.Habitantes > c2.Habitantes) {
+        printf("Resultado: Carta 1 (%s) venceu!\n", c1.Nome);
+    } else if (c2.Habitantes > c1.Habitantes) {
+        printf("Resultado: Carta 2 (%s) venceu!\n", c2.Nome);
+    } else {
+        printf("Resultado: Empate!\n");
+    }
+
+    return 0;
+}
